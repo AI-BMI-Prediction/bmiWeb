@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import torch
 import torch.nn as nn
-
+import numpy as np
 
 # Create your views here.
 
@@ -52,15 +52,18 @@ def index(request):
         model.eval()
 
         #input 값들 Tensor화 시키기
-        inputs = torch.Tensor(input)
+        inputs = torch.FloatTensor(input)
+
+        print(inputs)
 
         #모델 로드
-        model.load_state_dict(torch.load('./static/DNNModel.pth'))
+        model.load_state_dict(torch.load('C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\DNNModel.pth'))
 
         #예측 값
-        outputs = model(inputs)
-        print(outputs)
+        output = model(inputs)
+        _, outputs=output.max(dim=-1)
+        predict=outputs.numpy()
 
-    return render(request, 'index.html', {'outputs':outputs})
+    return render(request, 'index.html', {'outputs':predict})
 
 

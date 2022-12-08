@@ -6,7 +6,7 @@ def index(request):
     return render(request, 'index.html')
 
 def result(request):
-    name = request.POST['username']
+    name = request.POST['height']
     students = ['inu', 'james', 'bob']
 
     if name in students:
@@ -14,5 +14,5 @@ def result(request):
     else:
         is_exist = False
 
-    return render(request, 'result.html', {'user_name': name, 'is_exist':is_exist})
+    return render(request, 'index.html', {'user_name': name, 'is_exist':is_exist})
 

@@ -21,5 +21,14 @@
     <br/>
     <button type="submit">예측시작</button>
 </form>
+
+<div>
+        <h1>결과</h1>
+    {% if is_exist %}
+        {{user_name}}은 있어요!
+    {% else %}
+        {{user_name}}은 없어요!
+    {% endif %}
+</div>
 </body>
 </html>

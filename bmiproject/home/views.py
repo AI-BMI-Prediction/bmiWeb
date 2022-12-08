@@ -61,7 +61,7 @@ def index(request):
         print(inputs)
 
         #모델 로드
-        model.load_state_dict(torch.load('C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\DNNModel.pth'))
+        model.load_state_dict(torch.load('C:\\Users\\user\\PycharmProjects\\bmi\\bmiproject\\home\\static\\DNNModel.pth'))
 
         #예측 값
         output = model(inputs)

@@ -4,42 +4,66 @@
     <title>BMI Prediction</title>
 <style>
     body{text-align: center;}
+    .box{display:flex; justify-content: center;}
+    .result{border: 3px black solid; width:500px; height:300px; margin:30px; text-align:center;}
+    h2{margin-top:25%;}
 </style>
 </head>
 <body>
     <h1>신체 정보를 입력해 보세요!</h1>
+    <br><br><br>
 <form action="{% url 'index'%}" method="POST">
     {% csrf_token %}
-    <div>
-    <input name="height" placeholder="키"/>
-    <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\height.jpg" alt="height">
-     </div>
-    <div>
-        <input name="weight" placeholder="몸무게"/>
-        <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\weight.jpg" alt="weight">
+
+    <div class="box">
+        <div>
+              <img src="/static/img/height.jpg" alt="height" width="250px" height="250px">
+              <p><input name="height" placeholder="키" style="width:200px; height:20px;"/></p>
+        </div>
+
+        <div>
+              <img src="/static/img/weight.jpg" alt="weight" width="250px" height="250px">
+              <p><input name="weight" placeholder="몸무게" style="width:200px; height:20px;"/></p>
+        </div>
+
+        <div>
+              <img src="/static/img/step_count.jpg" alt="step_count" width="250px" height="250px">
+              <p><input name="step_count" placeholder="걸음수" style="width:200px; height:20px;"/></p>
+        </div>
     </div>
-    <div>
-    <input name="step_count" placeholder="걸음수"/>
-        <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\step_count.jpg" alt="step_count">
+
+    <div class="box">
+        <div>
+              <img src="/static/img/calorie_intake.jpg" alt="calorie_intake" width="250px" height="250px">
+              <p><input name="calorie_intake" placeholder="섭취 칼로리" style="width:200px; height:20px;"/></p>
+        </div>
+
+        <div>
+              <img src="/static/img/burn_calorie.jpg" alt="burn_calorie" width="250px" height="250px">
+              <p><input name="burned_calorie" placeholder="소비칼로리" style="width:200px; height:20px;"/></p>
+        </div>
+
+        <div>
+            <img src="/static/img/sleep.jpg" alt="sleep" width="250px" height="250px">
+            <p><input name="sleep" placeholder="수면시간" style="width:200px; height:20px;"/></p>
+        </div>
     </div>
-    <div>
-    <input name="calorie_intake" placeholder="섭취칼로리"/>
-        <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\calorie_intake.jpg" alt="calorie_intake">
-    </div>
-    <div>
-        <input name="burned_calorie" placeholder="소비칼로리"/>
-        <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\burn_calorie.jpg" alt="burn_calorie">
-    </div>
-    <div>
-        <input name="sleep" placeholder="수면시간"/>
-        <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\sleep.jpg" alt="sleep">
-    </div>
+
+    <br><br>
+
     <button type="submit">예측시작</button>
 </form>
 
 <div>
         <h1>결과</h1>
-    <h2>{{ outputs }}</h2> <h2>{{ str }}</h2>
+    <div class="box">
+        <div class="result">
+            <h2>{{ outputs }}</h2>
+        </div>
+        <div class="result">
+            <h2>{{ str }}</h2>
+        </div>
+    </div>
 </div>
 </body>
 </html>

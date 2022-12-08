@@ -10,15 +10,30 @@
     <h1>신체 정보를 입력해 보세요!</h1>
 <form action="{% url 'index'%}" method="POST">
     {% csrf_token %}
+    <div>
     <input name="height" placeholder="키"/>
-    <input name="weight" placeholder="몸무게"/>
+    <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\height.jpg" alt="height">
+     </div>
+    <div>
+        <input name="weight" placeholder="몸무게"/>
+        <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\weight.jpg" alt="weight">
+    </div>
+    <div>
     <input name="step_count" placeholder="걸음수"/>
-    <br>
+        <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\step_count.jpg" alt="step_count">
+    </div>
+    <div>
     <input name="calorie_intake" placeholder="섭취칼로리"/>
-    <input name="burned_calorie" placeholder="소비칼로리"/>
-    <input name="sleep" placeholder="수면시간"/>
-    <br/>
-    <br/>
+        <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\calorie_intake.jpg" alt="calorie_intake">
+    </div>
+    <div>
+        <input name="burned_calorie" placeholder="소비칼로리"/>
+        <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\burn_calorie.jpg" alt="burn_calorie">
+    </div>
+    <div>
+        <input name="sleep" placeholder="수면시간"/>
+        <img src="C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\img\\sleep.jpg" alt="sleep">
+    </div>
     <button type="submit">예측시작</button>
 </form>
 

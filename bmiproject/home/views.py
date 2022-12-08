@@ -19,6 +19,10 @@ def index(request):
         calorie_intake =float( request.POST['calorie_intake'])
         burned_calorie = float(request.POST['burned_calorie'])
         sleep = float(request.POST['sleep'])
+        if(height==0):
+            bmi=0
+        else:
+            bmi= weight/(height*height/100)
 
         # Tensor화 시킬 데이터 리스트에 넣기
         input = []
@@ -64,6 +68,28 @@ def index(request):
         _, outputs=output.max(dim=-1)
         predict=outputs.numpy()
 
-    return render(request, 'index.html', {'outputs':predict})
+        print(bmi)
+
+        if predict==0 and bmi <15:
+            str= "0, 15 살찌세요"
+        elif predict==0 and bmi<25 and bmi>15:
+            str ="0 15~25 유지하세요"
+        elif predict==0 and bmi>25:
+            str ="0 25 살빼세요"
+        if predict==1 and bmi <15:
+            str= "1 15 유지하세요"
+        elif predict==1 and bmi<25  and bmi>15:
+            str ="1 15~25 좋습니다.근데 좀 더 자제"
+        elif predict==1 and bmi>25:
+            str ="1 25 살빼세요"
+        if predict==2 and bmi <15:
+            str= "2 15 살찌세요"
+        elif predict==1 and bmi<25  and bmi>15:
+            str ="2 15~25 좀더 먹어도 좋습니다"
+        elif predict==1 and bmi>25:
+            str ="2 25 유지하세요"
+
+
+    return render(request, 'index.html', {'outputs':predict,'str':str})
 
 

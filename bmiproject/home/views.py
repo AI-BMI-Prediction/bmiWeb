@@ -3,16 +3,28 @@ from django.shortcuts import render
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
 
-def result(request):
-    name = request.POST['height']
-    students = ['inu', 'james', 'bob']
+    if request.method =='GET':
+        return render(request, 'index.html')
 
-    if name in students:
-        is_exist = True
-    else:
-        is_exist = False
+    elif request.method =='POST':
 
-    return render(request, 'index.html', {'user_name': name, 'is_exist':is_exist})
+        height = request.POST['height']
+        weight = request.POST['weight']
+        step_count = request.POST['step_count']
+        calorie_intake = request.POST['calorie_intake']
+        burned_calorie = request.POST['burned_calorie']
+        sleep = request.POST['sleep']
+
+        context = {
+            'height': height,
+            'weight': weight,
+            'step_count': step_count,
+            'calorie_intake': calorie_intake,
+            'burned_calorie': burned_calorie,
+            'sleep': sleep,
+        }
+
+        return render(request, 'index.html', context)
+
 

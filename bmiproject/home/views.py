@@ -58,38 +58,52 @@ def index(request):
         #input 값들 Tensor화 시키기
         inputs = torch.FloatTensor(input)
 
-        print(inputs)
-
         #모델 로드
-        model.load_state_dict(torch.load('C:\\Users\\user\\PycharmProjects\\bmi\\bmiproject\\home\\static\\DNNModel.pth'))
+        model.load_state_dict(torch.load('C:\\Users\\user\\Desktop\\project\\bmiWeb\\bmiproject\\home\\static\\DNNModel.pth'))
 
         #예측 값
         output = model(inputs)
         _, outputs=output.max(dim=-1)
         predict=outputs.numpy()
-
-        print(bmi)
+        
+        if(predict==0):
+            str3="BMI가 유지한다"
+        elif(predict==1):
+            str3="BMI가 증가한다"
+        elif(predict==2):
+            str3="BMI가 감소한다"
+        else:
+            str3="예측실패"
 
         if predict==0 and bmi <15:
-            str= "0, 15 살찌세요"
+            str= "BMI가 유지될 것으로 예측됩니다."
+            str2= "사용자는 저체중이라서 몸무게를 더 찌우시는 것이 건강에 더 좋아 보입니다."
         elif predict==0 and bmi<25 and bmi>15:
-            str ="0 15~25 유지하세요"
+            str= "BMI가 유지될 것으로 예측됩니다."
+            str2= "사용자는 정상체중이라서 몸무게를 더 유지하시는 것이 건강에 더 좋아 보입니다."
         elif predict==0 and bmi>25:
-            str ="0 25 살빼세요"
+            str= "BMI가 유지될 것으로 예측됩니다."
+            str2= "사용자는 과체중이라서 몸무게를 더 감량하시는 것이 건강에 더 좋아 보입니다."
         if predict==1 and bmi <15:
-            str= "1 15 유지하세요"
+            str= "BMI가 증가될 것으로 예측됩니다."
+            str2= "사용자는 저체중이라서 몸무게를 더 찌우시는 것이 건강에 더 좋아 보입니다."
         elif predict==1 and bmi<25  and bmi>15:
-            str ="1 15~25 좋습니다.근데 좀 더 자제"
+            str= "BMI가 증가될 것으로 예측됩니다."
+            str2= "사용자는 정상체중이라서 몸무게를 더 유지하시는 것이 건강에 더 좋아 보입니다."
         elif predict==1 and bmi>25:
-            str ="1 25 살빼세요"
+            str= "BMI가 증가될 것으로 예측됩니다."
+            str2= "사용자는 과체중이라서 몸무게를 더 감량하시는 것이 건강에 더 좋아 보입니다."
         if predict==2 and bmi <15:
-            str= "2 15 살찌세요"
+            str= "BMI가 감소할 것으로 예측됩니다."
+            str2= "사용자는 저체중이라서 몸무게를 더 찌우시는 것이 건강에 더 좋아 보입니다."
         elif predict==1 and bmi<25  and bmi>15:
-            str ="2 15~25 좀더 먹어도 좋습니다"
+            str= "BMI가 감소할 것으로 예측됩니다."
+            str2= "사용자는 정상체중이라서 몸무게를 더 유지하시는 것이 건강에 더 좋아 보입니다."
         elif predict==1 and bmi>25:
-            str ="2 25 유지하세요"
+            str= "BMI가 감소할 것으로 예측됩니다."
+            str2= "사용자는 과체중이라서 몸무게를 더 감량하시는 것이 건강에 더 좋아 보입니다."
 
 
-    return render(request, 'index.html', {'outputs':predict,'str':str})
+    return render(request, 'index.html', {'outputs':str3,'str':str,'str2':str2})
 
 
